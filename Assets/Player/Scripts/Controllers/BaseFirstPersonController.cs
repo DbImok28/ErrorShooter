@@ -112,7 +112,7 @@ namespace ECM.Controllers
 
         protected virtual void AnimateView()
         {
-            // Scale camera pivot to simulate crouching
+            // Scale camera pivot to simulate crouching 
 
             var yScale = isCrouching ? Mathf.Clamp01(crouchingHeight / standingHeight) : 1.0f;
 
