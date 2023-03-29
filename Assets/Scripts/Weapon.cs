@@ -15,10 +15,11 @@ public class Weapon : MonoBehaviour
     public AudioClip ShootClip;
 
     [Header("Events")]
-    public UnityEvent ShootEvent;
-    public UnityEvent<RaycastHit> ShootHitEvent;
+    public UnityEvent OnShoot;
+    public UnityEvent<RaycastHit> OnShootHit;
 
     private bool IsFireRateDelayNow = false;
+    private GameObject ShootPointSphere;
 
     #region Mono
     private void Start()
@@ -27,6 +28,11 @@ public class Weapon : MonoBehaviour
         {
             ShootSource = gameObject;
         }
+        // Debug only
+        ShootPointSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        Destroy(ShootPointSphere.GetComponent<Collider>());
+        ShootPointSphere.GetComponent<MeshRenderer>().material.color = Color.green;
+        ShootPointSphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
     }
 
     private void Update()
@@ -44,19 +50,28 @@ public class Weapon : MonoBehaviour
         {
             IsFireRateDelayNow = true;
             var hit = RaycastShoot();
-            ShootEvent.Invoke();
+            OnShoot.Invoke();
             if (hit != null)
             {
-                ShootHitEvent.Invoke(hit.Value);
+                OnShootHit.Invoke(hit.Value);
                 if (ShootAudioSource && ShootClip)
                 {
                     ShootAudioSource.PlayOneShot(ShootClip);
                 }
+
+                var health = hit.Value.collider.gameObject.GetComponent<HealthComponent>();
+                if (health)
+                {
+                    health.TakeDamage(Damage);
+                }
                 // Test code
                 GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                sphere.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                 Destroy(sphere.GetComponent<Collider>());
-                Destroy(Instantiate(sphere, hit.Value.point, Quaternion.identity), 5);
+                sphere.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                sphere.transform.localPosition = hit.Value.point;
+                sphere.transform.localRotation = Quaternion.identity;
+
+                Destroy(sphere, 5);
             }
             StartCoroutine(FireRateDelay());
         }
@@ -72,6 +87,8 @@ public class Weapon : MonoBehaviour
     {
         if (Physics.Raycast(ShootSource.transform.position, ShootSource.transform.forward, out RaycastHit hit, MaxShootDistance))
         {
+            // Debug only
+            if (ShootPointSphere) ShootPointSphere.transform.localPosition = hit.point;
             return hit;
         }
         return null;
