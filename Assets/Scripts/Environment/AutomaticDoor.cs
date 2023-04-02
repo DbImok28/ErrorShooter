@@ -8,14 +8,18 @@ public class AutomaticDoor : MonoBehaviour
     //private Transform character;
     private bool isOpen;
     private float time;
-    public float openRadius = 1;
+    private float openRadius = 5;
     public float openHeight = 2;
-    public float openTime = 1;
+    public float openTime = 3;
     private Transform door;
+    private float doorColliderHeight;
+    private float doorColliderWidth;
     void Start()
     {
         isOpen = false;
         door = GetComponentInChildren<Transform>();
+        doorColliderHeight = gameObject.GetComponent<BoxCollider>().size.y;
+        doorColliderWidth = gameObject.GetComponent<BoxCollider>().size.x;
     }
 
     private void Animate(Vector3  targetPosition) {
@@ -23,8 +27,25 @@ public class AutomaticDoor : MonoBehaviour
         time += Time.deltaTime;
     }
 
-    IEnumerator MoveCoroutine(Vector3 targetPosition)
+    public void MoveDoor(Vector3 end)
     {
+        float elapsedTime = 0;
+        Vector3 startingPos =door.position;
+        while (elapsedTime < openTime)
+        {
+            Debug.Log("moving door...");
+            door.position = Vector3.Lerp(startingPos, end, (elapsedTime / openTime));
+            elapsedTime += Time.deltaTime;
+        }
+        door.position = end;
+        Debug.Log("stopped moving door...");
+    }
+
+    IEnumerator MoveCoroutine(Vector3 targetPosition, bool newDoorState)
+    {
+        Debug.Log("move coroutine : "+ isOpen);
+        Debug.Log("start coroutine");
+        Debug.Log("move coroutine : " + isOpen);
         Vector3 startPosition = door.position;
         for(float i=0; i<1; i += Time.deltaTime/openTime)
         {
@@ -34,26 +55,34 @@ public class AutomaticDoor : MonoBehaviour
         }
 
         door.position = targetPosition;
+        isOpen = newDoorState;
+        Debug.Log("move coroutine : " + isOpen);
+        Debug.Log("end coroutine");
+        Debug.Log("move coroutine : " + isOpen);
     }
 
     private void BeOpened()
     {
         Debug.Log("open");
         Vector3 up =door.position+ new Vector3(0, openHeight, 0);
-        StartCoroutine(MoveCoroutine(up));
-        //door.position+= up;
-        //Animate(up);
+        //StartCoroutine(MoveCoroutine(up, true));
+        Debug.Log("be opened : " + isOpen);
+        MoveDoor(up);
         isOpen = true;
+        Debug.Log("be opened : " + isOpen);
+
+
     }
 
     private void BeClosed()
     {
         Debug.Log("close");
         Vector3 down = door.position + new Vector3(0, -openHeight, 0);
-        StartCoroutine(MoveCoroutine(down));
-        //door.position += down;
-        //Animate(down);
+        //StartCoroutine(MoveCoroutine(down, false));
+        MoveDoor(down);
         isOpen = false;
+        
+        
     }
 
     private void CheckIfOpen()
@@ -77,6 +106,7 @@ public class AutomaticDoor : MonoBehaviour
         }
         else
         {
+            //Debug.Log("no icanioendoor");
             if (isOpen)
             {
                 this.BeClosed();
