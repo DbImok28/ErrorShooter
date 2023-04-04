@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeyDoor : MonoBehaviour
+public abstract class Door : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public GameObject key;
-
     private bool isOpen;
     private float openRadius = 5;
     public float openHeight = 2;
@@ -17,6 +14,7 @@ public class KeyDoor : MonoBehaviour
     private bool doorIsMoving;
     private Vector3 openPositon;
     private Vector3 closePosition;
+    // Start is called before the first frame update
     void Start()
     {
         isOpen = false;
@@ -25,33 +23,7 @@ public class KeyDoor : MonoBehaviour
         doorColliderWidth = gameObject.GetComponent<BoxCollider>().size.x;
         openPositon = door.position + new Vector3(0, openHeight, 0);
         closePosition = door.position;
-
     }
-
-
-    IEnumerator MoveDoor(Vector3 end)
-    {
-        doorIsMoving = true;
-        Debug.Log("start move");
-        float elapsedTime = 0;
-        Vector3 startingPos = door.position;
-        //Debug.Log(startingPos+" "+end);
-        while (elapsedTime < openTime)
-        {
-            //Debug.Log(elapsedTime);
-            door.position = Vector3.Lerp(startingPos, end, (elapsedTime / openTime));
-            //Debug.Log(door.position);
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-        door.position = end;
-        Debug.Log("stop move");
-        doorIsMoving = false;
-        yield return null;
-    }
-
-
 
     private void BeOpened()
     {
@@ -79,41 +51,35 @@ public class KeyDoor : MonoBehaviour
 
     }
 
-    private void CheckIfOpen()
+    IEnumerator MoveDoor(Vector3 end)
     {
-        var colliders = Physics.OverlapSphere(transform.position, openRadius);
-        List<GameObject> context = new List<GameObject>();
-        foreach (var collider in colliders)
+        doorIsMoving = true;
+        Debug.Log("start move");
+        float elapsedTime = 0;
+        Vector3 startingPos = door.position;
+        while (elapsedTime < openTime)
         {
-            if (collider.TryGetComponent<ICanOpenDoor>(out ICanOpenDoor canOpenDoor))
-            {
-                context.Add(collider.gameObject);
-            }
-        }
-        if (context.Count > 0)
-        {
-            //Debug.Log("context.Count > 0");
-            if (!isOpen && !doorIsMoving)
-            {
-                this.BeOpened();
-            }
-        }
-        else
-        {
-            //Debug.Log("no icanioendoor");
-            if (isOpen && !doorIsMoving)
-            {
-                this.BeClosed();
-            }
-        }
+            door.position = Vector3.Lerp(startingPos, end, (elapsedTime / openTime));
+            elapsedTime += Time.deltaTime;
 
+            yield return null;
+        }
+        door.position = end;
+        Debug.Log("stop move");
+        doorIsMoving = false;
+        yield return null;
+    }
+
+
+
+    public bool CanBeOpened()
+    {
+        return true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        CheckIfOpen();
+        
     }
-
-
 }

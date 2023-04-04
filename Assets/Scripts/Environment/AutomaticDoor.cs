@@ -7,9 +7,9 @@ public class AutomaticDoor : MonoBehaviour
     // Start is called before the first frame update
     //private Transform character;
     private bool isOpen;
-    private float time;
     private float openRadius = 5;
     public float openHeight = 2;
+    private float gesterezis=0.9f;
     public float openTime = 3000;
     private Transform door;
     private float doorColliderHeight;
@@ -17,21 +17,19 @@ public class AutomaticDoor : MonoBehaviour
     private bool doorIsMoving;
     private Vector3 openPositon;
     private Vector3 closePosition;
+    private Vector3 doorBottom;
     void Start()
     {
         isOpen = false;
         door = GetComponentInChildren<Transform>();
-        doorColliderHeight = gameObject.GetComponent<BoxCollider>().size.y;
-        doorColliderWidth = gameObject.GetComponent<BoxCollider>().size.x;
+        doorBottom = GetComponentInChildren< BoxCollider>().bounds.min;
+        //doorColliderHeight = gameObject.GetComponent<BoxCollider>().size.y;
+        //doorColliderWidth = gameObject.GetComponent<BoxCollider>().size.x;
         openPositon = door.position + new Vector3(0, openHeight, 0);
         closePosition= door.position ;
 
     }
 
-    private void Animate(Vector3  targetPosition) {
-        door.position = Vector3.Lerp(transform.position, targetPosition, time);
-        time += Time.deltaTime;
-    }
 
     IEnumerator MoveDoor(Vector3 end)
     {
@@ -50,7 +48,7 @@ public class AutomaticDoor : MonoBehaviour
             yield return null;
         }
         door.position = end;
-        Debug.Log("stop move");
+        Debug.Log("end move");
         doorIsMoving = false;
         yield return null;
     }
@@ -85,7 +83,11 @@ public class AutomaticDoor : MonoBehaviour
 
     private void CheckIfOpen()
     {
-        var colliders = Physics.OverlapSphere(transform.position, openRadius);
+        float checkDistance;
+        checkDistance = (isOpen) ? openRadius / gesterezis : openRadius * gesterezis;
+        Debug.Log(checkDistance);
+        
+        var colliders = Physics.OverlapSphere(doorBottom, checkDistance);
         List<GameObject> context = new List<GameObject>();
         foreach(var collider in colliders)
         {
