@@ -7,7 +7,6 @@ public interface INoteState
 {
     void Display(Note note);
     void Hide(Note note);
-
     void NextState(Note note);
 }
 
@@ -18,7 +17,6 @@ public class DisplayedNoteState : INoteState
         note.isDisplayed = true;
         note.enabled = true;
         note.State = new DisplayedNoteState();
-        Debug.Log("display");
     }
 
     public void Hide(Note note)
@@ -26,12 +24,10 @@ public class DisplayedNoteState : INoteState
         note.isDisplayed = false;
         note.enabled = false;
         note.State = new HiddenNoteState();
-        Debug.Log("hide");
     }
 
     public void NextState(Note note)
     {
-        Debug.Log("display to hide");
         note.State=new HiddenNoteState();
     }
 }
@@ -43,7 +39,6 @@ public class HiddenNoteState : INoteState
         note.isDisplayed = true;
         note.enabled = true;
         note.State = new DisplayedNoteState();
-        Debug.Log("display");
     }
 
     public void Hide(Note note)
@@ -51,12 +46,10 @@ public class HiddenNoteState : INoteState
         note.isDisplayed = false;
         note.enabled = false;
         note.State = new HiddenNoteState();
-        Debug.Log("hide");
     }
 
     public void NextState(Note note)
     {
-        Debug.Log("hide to display");
         note.State = new DisplayedNoteState();
     }
 }
@@ -89,7 +82,7 @@ public class Note : MonoBehaviour
         
         noteImage.enabled = false;
         isDisplayed = false;
-        State = new HiddenNoteState();
+        this.State = new HiddenNoteState();
     }
 
     // Update is called once per frame

@@ -16,7 +16,6 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
 
     public void PickUpItem()
     {
-        Debug.Log("trypickup");
         var colliders = Physics.OverlapSphere(gameObject.transform.position, CanPickUpItemRadius);
         foreach (var collider in colliders)
         {
@@ -26,7 +25,6 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
             {
                 Debug.Log(collider.gameObject.GetInstanceID());
                 pickedUpItems.Add(collider.gameObject);
-                //Destroy(collider.gameObject);
                 Debug.Log(pickedUpItems.Count);
             }
         }
@@ -41,7 +39,6 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
 
             if (keyDoor != null)
             {
-                Debug.Log("KeyDoor detected");
                 keyDoor.CompareKeys(pickedUpItems);
             }
         }
@@ -49,24 +46,15 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
 
     public void DisplayOrHideNote()
     {
-        //List<Note> nearestNotes = new List<Note>();
         var colliders = Physics.OverlapSphere(transform.position, ÑanReadNoteRadius);
         foreach (var collider in colliders)
         {
             if (collider.gameObject.TryGetComponent<Note>(out Note note))
             {
                 nearestNote = note;
-                Debug.Log("note nearby");
-                //note.DisplayOrHide();
                 nearestNote.DisplayOrHide();
                 break;
             }
-        }
-        float distance = Vector3.Distance(nearestNote.gameObject.transform.position, gameObject.transform.position);
-        if (distance < ÑanReadNoteRadius)
-        {
-            nearestNote.Hide();
-            nearestNote = null;
         }
     }
 
@@ -90,7 +78,6 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            Debug.Log("Attach key command");
             AttachKey();
         }
     }

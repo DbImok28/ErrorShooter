@@ -5,70 +5,60 @@ using UnityEngine;
 public class KeyDoor : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject key;
-
+    public GameObject Key;
     private bool userHasKey;
-    private bool isOpen;
-    private float openRadius = 5;
-    public float openHeight = 2;
-    public float openTime = 3000;
-    private Transform door;
-    private float doorColliderHeight;
-    private float doorColliderWidth;
-    private bool doorIsMoving;
-    private Vector3 openPositon;
-    private Vector3 closePosition;
-    void Start()
-    {
-        isOpen = false;
-        door = GetComponentInChildren<Transform>();
-        doorColliderHeight = gameObject.GetComponent<BoxCollider>().size.y;
-        doorColliderWidth = gameObject.GetComponent<BoxCollider>().size.x;
-        openPositon = door.position + new Vector3(0, openHeight, 0);
-        closePosition = door.position;
-
-    }
-
+    
     public void CompareKeys(List<GameObject> playerKeys)
     {
-        Debug.Log(key.GetComponent<KeyForDoor>().ItemName);
-        foreach(GameObject playerKey in playerKeys)
-        {
-            Debug.Log(playerKey.GetComponent<KeyForDoor>().ItemName);
-        }
-        var matches = playerKeys.Find(item=>item.GetComponent<KeyForDoor>().ItemName==key.GetComponent<KeyForDoor>().ItemName);
+        
+        var matches = playerKeys.Find(item=>item.GetComponent<KeyForDoor>().ItemName==Key.GetComponent<KeyForDoor>().ItemName);
         if (matches)
         {
-            Debug.Log("user has key");
             userHasKey = true;
         }
         else
         {
-            Debug.Log("user has no key");
         }
         
+    }
+
+
+    public float OpenHeight = 2;
+    public float openTime = 3000;
+
+    private bool isOpen;
+    private float openRadius = 5;
+    private float gesterezis = 0.9f;
+    private Transform door;
+    private bool doorIsMoving;
+    private Vector3 openPositon;
+    private Vector3 closePosition;
+    private Vector3 doorBottom;
+    void Start()
+    {
+        isOpen = false;
+        door = GetComponentInChildren<Transform>();
+        doorBottom = GetComponentInChildren<BoxCollider>().bounds.min;
+        openPositon = door.position + new Vector3(0, OpenHeight, 0);
+        closePosition = door.position;
     }
 
 
     IEnumerator MoveDoor(Vector3 end)
     {
         doorIsMoving = true;
-        Debug.Log("start move");
         float elapsedTime = 0;
         Vector3 startingPos = door.position;
-        //Debug.Log(startingPos+" "+end);
         while (elapsedTime < openTime)
         {
-            //Debug.Log(elapsedTime);
             door.position = Vector3.Lerp(startingPos, end, (elapsedTime / openTime));
-            //Debug.Log(door.position);
             elapsedTime += Time.deltaTime;
 
             yield return null;
         }
         door.position = end;
-        Debug.Log("stop move");
         doorIsMoving = false;
+
         yield return null;
     }
 
@@ -76,33 +66,22 @@ public class KeyDoor : MonoBehaviour
 
     private void BeOpened()
     {
-        Debug.Log("start open");
-        Vector3 up = door.position + new Vector3(0, openHeight, 0);
-        //StartCoroutine(MoveCoroutine(up, true));
-        //Debug.Log("before moving : " + isOpen);
         StartCoroutine(MoveDoor(openPositon));
         isOpen = true;
-        Debug.Log("end open");
-        //Debug.Log("after moving : " + isOpen);
-
-
     }
 
     private void BeClosed()
     {
-        Debug.Log("start close");
-        Vector3 down = door.position;// + new Vector3(0, -openHeight, 0);
         StartCoroutine(MoveDoor(closePosition));
-        MoveDoor(down);
         isOpen = false;
-        Debug.Log("end close");
-
-
     }
 
     private void CheckIfOpen()
     {
-        var colliders = Physics.OverlapSphere(transform.position, openRadius);
+        float checkDistance;
+        checkDistance = (isOpen) ? openRadius / gesterezis : openRadius * gesterezis;
+
+        var colliders = Physics.OverlapSphere(doorBottom, checkDistance);
         List<GameObject> context = new List<GameObject>();
         foreach (var collider in colliders)
         {
@@ -113,7 +92,6 @@ public class KeyDoor : MonoBehaviour
         }
         if (context.Count > 0)
         {
-            //Debug.Log("context.Count > 0");
             if (!isOpen && !doorIsMoving)
             {
                 this.BeOpened();
@@ -121,7 +99,6 @@ public class KeyDoor : MonoBehaviour
         }
         else
         {
-            //Debug.Log("no icanioendoor");
             if (isOpen && !doorIsMoving)
             {
                 this.BeClosed();
@@ -130,7 +107,6 @@ public class KeyDoor : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         CheckIfOpen();
