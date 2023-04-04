@@ -8,27 +8,36 @@ public class PlayerEnvironmentInteraction : MonoBehaviour
 
     public float ÑanReadNoteRadius;
     public float CanPickUpKeyRadius;
+
+    private Note nearestNote;
     public void PickUpKey()
     {
 
     }
 
-    public void TryReadNote()
+    public void DisplayOrHideNote()
     {
+        //List<Note> nearestNotes = new List<Note>();
         var colliders = Physics.OverlapSphere(transform.position, ÑanReadNoteRadius);
-        List<GameObject> context = new List<GameObject>();
-        //Debug.Log(colliders.Length);
         foreach (var collider in colliders)
         {
-            //Debug.Log("smth nearby");
-            //Debug.Log(collider.gameObject.name);
             if (collider.gameObject.TryGetComponent<Note>(out Note note))
             {
+                nearestNote = note;
                 Debug.Log("note nearby");
-                note.DisplayOrHide();
+                //note.DisplayOrHide();
+                nearestNote.DisplayOrHide();
+                break;
             }
         }
+        float distance = Vector3.Distance(nearestNote.gameObject.transform.position, gameObject.transform.position);
+        if (distance < ÑanReadNoteRadius)
+        {
+            nearestNote.Hide();
+            nearestNote = null;
+        }
     }
+
     void Start()
     {
         
@@ -40,7 +49,7 @@ public class PlayerEnvironmentInteraction : MonoBehaviour
         //TryReadNote();
         if (Input.GetKeyDown(KeyCode.R))
         {
-            TryReadNote();
+            DisplayOrHideNote();
         }
     }
 }

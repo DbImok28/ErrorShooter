@@ -33,7 +33,7 @@ public class KeyDoor : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K))
         {
-
+            //если у игрока в инвентаре есть дубль ключа
         }
     } 
         void Start()
