@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class AutomaticDoor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    //private Transform character;
+
+    public float OpenHeight = 2;
+    public float openTime = 3000;
+
     private bool isOpen;
     private float openRadius = 5;
-    public float openHeight = 2;
     private float gesterezis=0.9f;
-    public float openTime = 3000;
     private Transform door;
-    private float doorColliderHeight;
-    private float doorColliderWidth;
     private bool doorIsMoving;
     private Vector3 openPositon;
     private Vector3 closePosition;
@@ -23,7 +21,7 @@ public class AutomaticDoor : MonoBehaviour
         isOpen = false;
         door = GetComponentInChildren<Transform>();
         doorBottom = GetComponentInChildren< BoxCollider>().bounds.min;
-        openPositon = door.position + new Vector3(0, openHeight, 0);
+        openPositon = door.position + new Vector3(0, OpenHeight, 0);
         closePosition= door.position;
 
     }
@@ -51,7 +49,7 @@ public class AutomaticDoor : MonoBehaviour
 
     private void BeOpened()
     {
-        Vector3 up =door.position+ new Vector3(0, openHeight, 0);
+        
         StartCoroutine(MoveDoor(openPositon));
         isOpen = true;
 
@@ -60,9 +58,7 @@ public class AutomaticDoor : MonoBehaviour
 
     private void BeClosed()
     {
-        Vector3 down = door.position;
         StartCoroutine(MoveDoor(closePosition));
-        MoveDoor(down);
         isOpen = false;
 
 
@@ -99,7 +95,6 @@ public class AutomaticDoor : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         CheckIfOpen();

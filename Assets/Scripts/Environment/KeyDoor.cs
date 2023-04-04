@@ -7,6 +7,7 @@ public class KeyDoor : MonoBehaviour
     // Start is called before the first frame update
     public GameObject key;
 
+    private bool userHasKey;
     private bool isOpen;
     private float openRadius = 5;
     public float openHeight = 2;
@@ -26,6 +27,26 @@ public class KeyDoor : MonoBehaviour
         openPositon = door.position + new Vector3(0, openHeight, 0);
         closePosition = door.position;
 
+    }
+
+    public void CompareKeys(List<GameObject> playerKeys)
+    {
+        Debug.Log(key.GetComponent<KeyForDoor>().ItemName);
+        foreach(GameObject playerKey in playerKeys)
+        {
+            Debug.Log(playerKey.GetComponent<KeyForDoor>().ItemName);
+        }
+        var matches = playerKeys.Find(item=>item.GetComponent<KeyForDoor>().ItemName==key.GetComponent<KeyForDoor>().ItemName);
+        if (matches)
+        {
+            Debug.Log("user has key");
+            userHasKey = true;
+        }
+        else
+        {
+            Debug.Log("user has no key");
+        }
+        
     }
 
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ICanPickUp
 {
-    List<IPickableItem> pickedUpItems { get; set; }
+    List<GameObject> pickedUpItems { get; set; }
 
-    public void PickUpItem(IPickableItem pickableItem);
+    public void PickUpItem();
 }
