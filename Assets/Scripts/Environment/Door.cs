@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Door : MonoBehaviour
 {
+
+
+
     private bool isOpen;
     private float openRadius = 5;
     public float openHeight = 2;
@@ -76,6 +79,8 @@ public abstract class Door : MonoBehaviour
     {
         return true;
     }
+
+
 
     // Update is called once per frame
     void Update()

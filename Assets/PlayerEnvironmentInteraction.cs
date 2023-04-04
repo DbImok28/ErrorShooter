@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEnvironmentInteraction : MonoBehaviour
+public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
 {
     // Start is called before the first frame update
 
     public float ÑanReadNoteRadius;
-    public float CanPickUpKeyRadius;
+    public float CanPickUpItemRadius;
 
     private Note nearestNote;
-    public void PickUpKey()
-    {
 
+    public List<IPickableItem> pickedUpItems { get; set; }
+
+    public void PickUpItem(IPickableItem pickableItem)
+    {
+        pickedUpItems.Add(pickableItem);
     }
 
     public void DisplayOrHideNote()
@@ -38,6 +41,20 @@ public class PlayerEnvironmentInteraction : MonoBehaviour
         }
     }
 
+    private void TryPickUpItem()
+    {
+        var colliders = Physics.OverlapSphere(gameObject.transform.position, CanPickUpItemRadius);
+        List<GameObject> context = new List<GameObject>();
+        foreach (var collider in colliders)
+        {
+            if (collider.TryGetComponent<IPickableItem>(out IPickableItem pickableItem))
+            {
+                pickedUpItems.Add(pickableItem);
+                Debug.Log(pickedUpItems.Count);
+            }
+        }
+    }
+
     void Start()
     {
         
@@ -51,5 +68,10 @@ public class PlayerEnvironmentInteraction : MonoBehaviour
         {
             DisplayOrHideNote();
         }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            TryPickUpItem();
+        }
     }
+
 }

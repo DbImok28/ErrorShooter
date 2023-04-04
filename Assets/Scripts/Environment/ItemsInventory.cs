@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class ItemsInventory : MonoBehaviour
 {
     // Start is called before the first frame update
-    public List<GameObject> keys;
-    public GameObject currentItem;
+    public List<GameObject> Keys;
     void Start()
     {
         
