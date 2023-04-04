@@ -4,7 +4,5 @@ using UnityEngine;
 
 public interface IPickableItem
 {
-    public  bool isEquiped { get; set; }
-
-    public void PickUp();
+    
 }

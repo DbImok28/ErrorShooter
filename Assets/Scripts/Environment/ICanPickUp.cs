@@ -6,5 +6,5 @@ public interface ICanPickUp
 {
     List<IPickableItem> pickedUpItems { get; set; }
 
-    public void PickUpItem(IPickableItem pickableItems);
+    public void PickUpItem(IPickableItem pickableItem);
 }

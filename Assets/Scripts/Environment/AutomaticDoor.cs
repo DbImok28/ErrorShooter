@@ -23,10 +23,8 @@ public class AutomaticDoor : MonoBehaviour
         isOpen = false;
         door = GetComponentInChildren<Transform>();
         doorBottom = GetComponentInChildren< BoxCollider>().bounds.min;
-        //doorColliderHeight = gameObject.GetComponent<BoxCollider>().size.y;
-        //doorColliderWidth = gameObject.GetComponent<BoxCollider>().size.x;
         openPositon = door.position + new Vector3(0, openHeight, 0);
-        closePosition= door.position ;
+        closePosition= door.position;
 
     }
 
@@ -34,22 +32,18 @@ public class AutomaticDoor : MonoBehaviour
     IEnumerator MoveDoor(Vector3 end)
     {
         doorIsMoving = true;
-        Debug.Log("start move");
         float elapsedTime = 0;
-        Vector3 startingPos =door.position;
-        //Debug.Log(startingPos+" "+end);
+        Vector3 startingPos = door.position;
         while (elapsedTime < openTime)
         {
-            //Debug.Log(elapsedTime);
             door.position = Vector3.Lerp(startingPos, end, (elapsedTime / openTime));
-            //Debug.Log(door.position);
             elapsedTime += Time.deltaTime;
 
             yield return null;
         }
         door.position = end;
-        Debug.Log("end move");
         doorIsMoving = false;
+
         yield return null;
     }
 
@@ -57,26 +51,19 @@ public class AutomaticDoor : MonoBehaviour
 
     private void BeOpened()
     {
-        Debug.Log("start open");
         Vector3 up =door.position+ new Vector3(0, openHeight, 0);
-        //StartCoroutine(MoveCoroutine(up, true));
-        //Debug.Log("before moving : " + isOpen);
         StartCoroutine(MoveDoor(openPositon));
         isOpen = true;
-        Debug.Log("end open");
-        //Debug.Log("after moving : " + isOpen);
 
 
     }
 
     private void BeClosed()
     {
-        Debug.Log("start close");
-        Vector3 down = door.position;// + new Vector3(0, -openHeight, 0);
+        Vector3 down = door.position;
         StartCoroutine(MoveDoor(closePosition));
         MoveDoor(down);
         isOpen = false;
-        Debug.Log("end close");
 
 
     }
@@ -85,7 +72,6 @@ public class AutomaticDoor : MonoBehaviour
     {
         float checkDistance;
         checkDistance = (isOpen) ? openRadius / gesterezis : openRadius * gesterezis;
-        Debug.Log(checkDistance);
         
         var colliders = Physics.OverlapSphere(doorBottom, checkDistance);
         List<GameObject> context = new List<GameObject>();
@@ -98,7 +84,6 @@ public class AutomaticDoor : MonoBehaviour
         }
         if (context.Count > 0)
         {
-            //Debug.Log("context.Count > 0");
             if (!isOpen && !doorIsMoving)
             {
                 this.BeOpened();
@@ -106,7 +91,6 @@ public class AutomaticDoor : MonoBehaviour
         }
         else
         {
-            //Debug.Log("no icanioendoor");
             if (isOpen && !doorIsMoving)
             {
                 this.BeClosed();

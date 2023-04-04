@@ -7,7 +7,7 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
     // Start is called before the first frame update
 
     public float ÑanReadNoteRadius;
-    public float CanPickUpItemRadius;
+    public float CanPickUpItemRadius=2;
 
     private Note nearestNote;
 
@@ -43,11 +43,13 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
 
     private void TryPickUpItem()
     {
+        Debug.Log("trypickup");
         var colliders = Physics.OverlapSphere(gameObject.transform.position, CanPickUpItemRadius);
-        List<GameObject> context = new List<GameObject>();
         foreach (var collider in colliders)
         {
-            if (collider.TryGetComponent<IPickableItem>(out IPickableItem pickableItem))
+            IPickableItem pickableItem = collider.GetComponentInParent(typeof(IPickableItem)) as IPickableItem;
+
+            if (pickableItem != null)
             {
                 pickedUpItems.Add(pickableItem);
                 Debug.Log(pickedUpItems.Count);
@@ -57,7 +59,7 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
 
     void Start()
     {
-        
+        pickedUpItems = new List<IPickableItem>();
     }
 
     // Update is called once per frame
