@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1038608396609272969}
   m_Layer: 0
-  m_Name: mingan_2
+  m_Name: Mingan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
