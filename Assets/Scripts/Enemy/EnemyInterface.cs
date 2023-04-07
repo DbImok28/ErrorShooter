@@ -1,6 +1,8 @@
 using System.Drawing;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
+using Color = UnityEngine.Color;
 
 public abstract class EnemyInterface : MonoBehaviour
 {
@@ -18,11 +20,10 @@ public abstract class EnemyInterface : MonoBehaviour
     [SerializeField] public Transform[] points;
     [SerializeField] private int destPoint = 0;
 
-    public float rotationSpeed = 5f;
+    public float rotationSpeed = 0.2f;
 
     private float spawnRate = 2f;
     float nextSpawn = 1.5f;
-
     private void Start()
     {
         //HPBar.value = health;
@@ -32,7 +33,6 @@ public abstract class EnemyInterface : MonoBehaviour
 
         EnemyHP = gameObject.GetComponent<HealthComponent>();
         EnemyHP.OnDie.AddListener(EnemyDie);
-
         GotoNextPoint();
     }
     private void Awake()
@@ -59,11 +59,10 @@ public abstract class EnemyInterface : MonoBehaviour
 
     public void RotateToTarget()
     {
-        transform.LookAt(new Vector3(target.position.x,target.position.y+1.5f,target.position.z));
+        //transform.LookAt(new Vector3(target.position.x,target.position.y+1.5f,target.position.z));
         //smooth rotate
-        //var targetRotation = Quaternion.LookRotation(new Vector3(target.position.x, target.position.y + 1.5f, target.position.z) - transform.position);
-        //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        
+        var targetRotation = Quaternion.LookRotation(new Vector3(target.position.x, target.position.y + 1.5f, target.position.z) - transform.position,Vector3.up);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
     }
 
     public void GotoNextPoint()
@@ -72,6 +71,11 @@ public abstract class EnemyInterface : MonoBehaviour
             return;
         agent.destination = points[destPoint].position;
         destPoint = (destPoint + 1) % points.Length;
+    }
+
+    public void EnemyRunAway()
+    {
+        //run away from player
     }
 
     public void EnemyAttack()

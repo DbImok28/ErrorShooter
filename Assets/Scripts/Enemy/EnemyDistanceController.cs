@@ -1,8 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Events;
-using static UnityEngine.GraphicsBuffer;
 
 public class EnemyDistanceController : EnemyInterface
 {
@@ -17,11 +13,12 @@ public class EnemyDistanceController : EnemyInterface
             RotateToTarget();
             if (IsViewTarget())
                 EnemyAttack();
+            else
+                EnemyWalk(target.position);
         }
-        else if (dis < distance && dis> distanceForFastAttake)
+        else if (dis < distance && dis>distanceForFastAttake)
         {
-            Vector3 newPos = transform.position + (transform.position - target.position);
-            EnemyWalk(newPos);
+            EnemyRunAway();
         }
         else if(dis <= distanceForFastAttake)
         {

@@ -927,6 +927,21 @@ PrefabInstance:
       propertyPath: EnemyEye
       value: 
       objectReference: {fileID: 49166705}
+    - target: {fileID: 776277487808257576, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 776277487808257576, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: points.Array.data[0]
+      value: 
+      objectReference: {fileID: 642297813}
+    - target: {fileID: 776277487808257576, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: points.Array.data[1]
+      value: 
+      objectReference: {fileID: 887560318}
     - target: {fileID: 776277487808257577, guid: 72430aca78328254684249ecda354e45,
         type: 3}
       propertyPath: m_RootOrder
@@ -2954,6 +2969,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 776277487808257576, guid: 72430aca78328254684249ecda354e45,
         type: 3}
+      propertyPath: radius
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 776277487808257576, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1217841088}
@@ -2962,6 +2982,26 @@ PrefabInstance:
       propertyPath: EnemyEye
       value: 
       objectReference: {fileID: 1357524645}
+    - target: {fileID: 776277487808257576, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: centrePoint
+      value: 
+      objectReference: {fileID: 1727738505}
+    - target: {fileID: 776277487808257576, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 776277487808257576, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: points.Array.data[0]
+      value: 
+      objectReference: {fileID: 642297813}
+    - target: {fileID: 776277487808257576, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: points.Array.data[1]
+      value: 
+      objectReference: {fileID: 887560318}
     - target: {fileID: 776277487808257577, guid: 72430aca78328254684249ecda354e45,
         type: 3}
       propertyPath: m_RootOrder
