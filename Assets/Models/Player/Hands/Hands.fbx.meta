@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: 2aec704006ede7a4ba0d4e030aa6db25
+guid: 281711293e46d4349ab7640168144a17
 ModelImporter:
   serializedVersion: 21202
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -2776722356561078386
+    second: Hands|HandArmatureLayer0
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,7 +38,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.02
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -88,7 +91,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.0002
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
