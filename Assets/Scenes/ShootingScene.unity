@@ -2983,6 +2983,18 @@ Material:
     - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &945908369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3463363083581282531, guid: a3971036362460e42b32f2312423bb87,
+    type: 3}
+  m_PrefabInstance: {fileID: 6651923012172915091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d88380b2c2cc24f948d9c7e5b849fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &973589846
 GameObject:
   m_ObjectHideFlags: 0
@@ -6034,3 +6046,86 @@ Material:
     - _EmissionColorUI: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColorWithMapUI: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+<<<<<<< Updated upstream
+=======
+--- !u!1001 &6651923012172915091
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2074687342}
+    m_Modifications:
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.019
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.334
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350520855532217268, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_Name
+      value: Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 7375679786317376270, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: WeaponAttackDecorator
+      value: 
+      objectReference: {fileID: 945908369}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a3971036362460e42b32f2312423bb87, type: 3}
+--- !u!4 &8747328477615184029 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2680943994186856718, guid: a3971036362460e42b32f2312423bb87,
+    type: 3}
+  m_PrefabInstance: {fileID: 6651923012172915091}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>> Stashed changes

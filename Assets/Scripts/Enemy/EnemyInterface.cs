@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Color = UnityEngine.Color;
@@ -24,6 +25,9 @@ public abstract class EnemyInterface : MonoBehaviour
 
     private float spawnRate = 2f;
     float nextSpawn = 1.5f;
+
+    public bool IsRunAway;  
+
     private void Start()
     {
         //HPBar.value = health;
@@ -31,6 +35,7 @@ public abstract class EnemyInterface : MonoBehaviour
             if (!TryGetComponent(out agent))
                 print(name + " needs a navmesh agent!");
 
+        IsRunAway = false;
         EnemyHP = gameObject.GetComponent<HealthComponent>();
         EnemyHP.OnDie.AddListener(EnemyDie);
         GotoNextPoint();
@@ -65,17 +70,52 @@ public abstract class EnemyInterface : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed);
     }
 
-    public void GotoNextPoint()
+    public bool IsPointsExist()
     {
         if (points.Length == 0)
-            return;
-        agent.destination = points[destPoint].position;
-        destPoint = (destPoint + 1) % points.Length;
+            return false;
+        return true;
+    }
+    public void GotoNextPoint()
+    {
+        if (IsPointsExist()) {
+            EnemyWalk(points[destPoint].position);
+            destPoint = (destPoint + 1) % points.Length;
+        }
     }
 
     public void EnemyRunAway()
     {
+        IsRunAway= true;
         //run away from player
+        //Vector3 pos = new Vector3(Random.Range(-transform.position.x -10f, transform.position.x + 10f), 0, Random.Range(-transform.position.z + 10f, transform.position.z + 10f));
+        //EnemyWalk(pos);
+        if(IsPointsExist())
+        {
+            int k = 0;
+            float MinDistanceBetweenEnemyAndPoint = Vector3.Distance(transform.position, points[0].position);
+            for (int i = 1; i < points.Length; i++)
+            {
+                float distanceBetweenEnemyAndPoint = Vector3.Distance(transform.position, points[i].position);
+                if (distanceBetweenEnemyAndPoint < MinDistanceBetweenEnemyAndPoint&& CalculateDistanceBetweenPlayerAndPoints(i) > distanceForAttake)
+                {  
+                    MinDistanceBetweenEnemyAndPoint = distanceBetweenEnemyAndPoint;
+                    k = i;
+                }
+            }
+            EnemyWalk(points[k].position);
+        }
+    }
+    
+    public float CalculateDistanceBetweenPlayerAndPoints(int i)
+    {
+        return (Vector3.Distance(transform.position, points[i].position));
+    }
+
+
+    public void ResetIsRunAway()
+    {
+        IsRunAway= false;
     }
 
     public void EnemyAttack()
@@ -86,7 +126,6 @@ public abstract class EnemyInterface : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            print(name+" hit player");
         }
     }
 

@@ -8,7 +8,7 @@ public class EnemyDistanceController : EnemyInterface
 
         if (target == null)
             return;
-        if(dis >= distanceForAttake)
+        if(dis >= distanceForAttake && !IsRunAway)
         {
             RotateToTarget();
             if (IsViewTarget())
@@ -17,16 +17,20 @@ public class EnemyDistanceController : EnemyInterface
                 EnemyWalk(target.position);
         }
         else if (dis < distance && dis>distanceForFastAttake)
-        {
-            EnemyRunAway();
+        {   if(!IsRunAway)
+                EnemyRunAway();
         }
         else if(dis <= distanceForFastAttake)
         {
             RotateToTarget();
             EnemyAttack();
+            ResetIsRunAway();
         }
 
-        Vector3 forward = transform.TransformDirection(Vector3.forward) * 1000;
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+            ResetIsRunAway();
+
+            Vector3 forward = transform.TransformDirection(Vector3.forward) * 1000;
         Debug.DrawRay(transform.position, forward, Color.green);
     }
 
