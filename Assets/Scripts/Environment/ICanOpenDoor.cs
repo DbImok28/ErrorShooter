@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface ICanOpenDoor
 {
-    public void OpenDoor();  
+    
     
 }

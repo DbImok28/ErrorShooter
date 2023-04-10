@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
+public class PlayerEnvironmentInteraction : MonoBehaviour, ICanOpenDoor
 {
     // Start is called before the first frame update
 
@@ -12,36 +12,35 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
 
     private Note nearestNote;
 
+    public List<string> playerKeysNames;
     public List<GameObject> pickedUpItems { get; set; }
 
-    public void PickUpItem()
+    public void PickUpKey()
     {
         var colliders = Physics.OverlapSphere(gameObject.transform.position, CanPickUpItemRadius);
         foreach (var collider in colliders)
         {
-            IPickableItem pickableItem = collider.GetComponentInParent(typeof(IPickableItem)) as IPickableItem;
+            KeyForDoor pickableItem = collider.GetComponentInParent(typeof(KeyForDoor)) as KeyForDoor;
 
             if (pickableItem != null)
             {
-                Debug.Log(collider.gameObject.GetInstanceID());
-                pickedUpItems.Add(collider.gameObject);
-                Debug.Log(pickedUpItems.Count);
+                playerKeysNames.Add(pickableItem.KeyName);
+                Destroy(pickableItem.gameObject);
             }
         }
     }
 
-    public void AttachKey()
+    public void AttachCardreaderKey()
     {
-        var colliders = Physics.OverlapSphere(transform.position, CanOpenDoorRadius);
-        foreach (var collider in colliders)
-        {
-            KeyDoor keyDoor = collider.GetComponentInParent(typeof(KeyDoor)) as KeyDoor;
-
-            if (keyDoor != null)
+        RaycastHit raycastHit;
+        Ray ray = gameObject.GetComponentInChildren<Camera>().ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out raycastHit, 100f))
             {
-                keyDoor.CompareKeys(pickedUpItems);
-            }
-        }
+            if(raycastHit.transform.TryGetComponent<Cardreader>(out Cardreader cardreader))
+                {
+                    cardreader.CompareKeys(playerKeysNames);
+                }
+           }
     }
 
     public void DisplayOrHideNote()
@@ -58,27 +57,24 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanPickUp
         }
     }
 
-
     void Start()
     {
-        pickedUpItems = new List<GameObject>();
+        playerKeysNames = new List<string>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //TryReadNote();
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.N))
         {
             DisplayOrHideNote();
         }
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            PickUpItem();
+            PickUpKey();
         }
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetMouseButtonDown(0))
         {
-            AttachKey();
+            AttachCardreaderKey();
         }
     }
 

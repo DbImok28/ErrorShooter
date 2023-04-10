@@ -57,7 +57,7 @@ public class HiddenNoteState : INoteState
 public class Note : MonoBehaviour
 {
     public INoteState State { get; set; }
-    // Start is called before the first frame update
+
     public bool isDisplayed;
 
     public Image noteImage;
@@ -85,9 +85,5 @@ public class Note : MonoBehaviour
         this.State = new HiddenNoteState();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
