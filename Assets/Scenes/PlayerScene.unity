@@ -1194,6 +1194,11 @@ PrefabInstance:
       propertyPath: CardreaderKeyName
       value: Key_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8698995747108758937, guid: 464adac52a0248e4f8cb45820907047c,
+        type: 3}
+      propertyPath: OpenHeight
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8698995747108758942, guid: 464adac52a0248e4f8cb45820907047c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1569,6 +1574,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1854274697410514893, guid: f97ce3cdf1330c247a0dd085052d475a,
+        type: 3}
+      propertyPath: OpenHeight
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2140545335634975589, guid: f97ce3cdf1330c247a0dd085052d475a,
         type: 3}
       propertyPath: m_Name
