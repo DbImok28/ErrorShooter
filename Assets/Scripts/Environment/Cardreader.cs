@@ -7,7 +7,7 @@ public class Cardreader : MonoBehaviour
 
 
     public string CardreaderKeyName;
-    public float PlayerNearRadius = 2.0f;
+    public float PlayerNearRadius = 5.0f;
     private KeyDoor keyDoor;
     public void CompareKeys(List<string> playerKeysNames)
     {
