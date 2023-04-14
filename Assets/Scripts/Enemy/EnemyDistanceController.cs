@@ -8,7 +8,7 @@ public class EnemyDistanceController : EnemyInterface
 
         if (target == null)
             return;
-        if(dis >= distanceForAttake && !IsRunAway)
+        if(dis >= distanceForAttake && !IsRunAway && dis<distance)
         {
             RotateToTarget();
             if (IsViewTarget())
