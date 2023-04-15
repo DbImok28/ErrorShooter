@@ -20,6 +20,8 @@ public abstract class Door : MonoBehaviour
     protected Vector3 ClosedPosition { get { return closedPosition; } set { closedPosition = value; } }
     private Vector3 closedPosition;
 
+    private Animator animator;
+
     GameObject FindChildWithTag(GameObject parent, string tag)
     {
         GameObject child = null;
@@ -39,37 +41,20 @@ public abstract class Door : MonoBehaviour
     protected virtual void Start()
     {
         isOpen = false;
-        DoorTransform = FindChildWithTag(gameObject, "Door").transform;
         DoorBottom = GetComponentInChildren<BoxCollider>().bounds.min;
-    }
-
-    IEnumerator MoveDoorCoroutine(Vector3 endPosition)
-    {
-        isMoving = true;
-        float elapsedTime = 0;
-        Vector3 startingPos = DoorTransform.position;
-        while (elapsedTime < DoorMoveTime)
-        {
-            DoorTransform.position = Vector3.Lerp(startingPos, endPosition, (elapsedTime / DoorMoveTime));
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-        DoorTransform.position = endPosition;
-        isMoving = false;
-
-        yield return null;
+        animator = GetComponent<Animator>();
+        
     }
 
     public void BeOpened()
     {
-        StartCoroutine(MoveDoorCoroutine(openedPosition));
+        animator.SetBool("CanBeOpened", true);
         isOpen = true;
     }
 
     public void BeClosed()
     {
-        StartCoroutine(MoveDoorCoroutine(closedPosition));
+        animator.SetBool("CanBeOpened", false);
         isOpen = false;
     }
 
