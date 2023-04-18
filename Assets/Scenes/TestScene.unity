@@ -5836,28 +5836,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1378307938}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &935027306 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7110427270280320919, guid: 04a21cdc43192cd4f90775a1f1cbc588,
-    type: 3}
-  m_PrefabInstance: {fileID: 1213202654}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &935027314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935027306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42fee1dc69dde7d459cefc5bec66deb5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  "\u0421anReadNoteRadius": 0
-  CanPickUpItemRadius: 2
-  CanOpenDoorRadius: 2
-  playerKeysNames: []
 --- !u!1 &956737858
 GameObject:
   m_ObjectHideFlags: 0
