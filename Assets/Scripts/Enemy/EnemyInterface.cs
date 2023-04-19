@@ -126,7 +126,9 @@ public abstract class EnemyInterface : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
+            gameObject.GetComponentInChildren<Animator>().Play("testAttake");
         }
+        
     }
 
     public void EnemyDie()

@@ -33,5 +33,4 @@ public class EnemyDistanceController : EnemyInterface
             Vector3 forward = transform.TransformDirection(Vector3.forward) * 1000;
         Debug.DrawRay(transform.position, forward, Color.green);
     }
-
 }
