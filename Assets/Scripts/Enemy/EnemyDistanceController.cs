@@ -20,12 +20,12 @@ public class EnemyDistanceController : EnemyInterface
         {   if(!IsRunAway)
                 EnemyRunAway();
         }
-        else if(dis <= distanceForFastAttake)
-        {
-            RotateToTarget();
-            EnemyAttack();
-            ResetIsRunAway();
-        }
+        //else if(dis <= distanceForFastAttake)
+        //{
+        //    RotateToTarget();
+        //    EnemyAttack();
+        //    ResetIsRunAway();
+        //}
 
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
             ResetIsRunAway();

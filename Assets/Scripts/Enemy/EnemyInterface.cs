@@ -126,7 +126,14 @@ public abstract class EnemyInterface : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            gameObject.GetComponentInChildren<Animator>().Play("testAttake");
+            if (gameObject.name == "EnemyDistant")
+            {
+
+                gameObject.GetComponentInChildren<Animator>().Play("Cube");
+                gameObject.GetComponent<Animator>().Play("testAttakeDistanceBot");
+            }
+            else
+                gameObject.GetComponentInChildren<Animator>().Play("testAttakeMeleeBot");
         }
         
     }
