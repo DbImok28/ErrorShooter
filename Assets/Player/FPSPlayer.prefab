@@ -224,7 +224,8 @@ GameObject:
   - component: {fileID: 7110427270280320923}
   - component: {fileID: 7110427270280320920}
   - component: {fileID: 7110427270280320921}
-  - component: {fileID: 7110427270280320918}
+  - component: {fileID: 3653754505939577353}
+  - component: {fileID: 1469307813216821209}
   - component: {fileID: 8321717528222961627}
   m_Layer: 0
   m_Name: FPSPlayer
@@ -343,7 +344,7 @@ MonoBehaviour:
   _clampPitch: 1
   _minPitchAngle: -90
   _maxPitchAngle: 90
---- !u!114 &7110427270280320918
+--- !u!114 &3653754505939577353
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -352,7 +353,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7110427270280320919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdd78ad1b02523246af003cc14e20b40, type: 3}
+  m_Script: {fileID: 11500000, guid: 52dae6746063a174f804cb78e4a89f33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Weapons:
+  - {fileID: 3350520855532217268, guid: a3971036362460e42b32f2312423bb87, type: 3}
+  - {fileID: 369911419506943539, guid: 3ac90ecb7fcc00149b50d521589fbce9, type: 3}
+--- !u!114 &1469307813216821209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7110427270280320919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8d552f3cd390534ab956b8db00d3a17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
@@ -379,6 +395,9 @@ MonoBehaviour:
   _backwardSpeed: 3
   _strafeSpeed: 4
   _runSpeedMultiplier: 2
+  Inventory: {fileID: 3653754505939577353}
+  WeaponSocket: {fileID: 9187891123649646341}
+  ActiveWeaponIndex: -1
 --- !u!114 &8321717528222961627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -493,6 +512,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shotgun
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350520855532217268, guid: a3971036362460e42b32f2312423bb87,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3971036362460e42b32f2312423bb87, type: 3}

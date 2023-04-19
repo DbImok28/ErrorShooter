@@ -504,6 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e278452063c1fd4dbbaadb0f8645fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponName: Shotgun
   ShootSource: {fileID: 3129295779551772611}
   TriggerPulls:
   - {fileID: 1993838285326807004}

@@ -503,6 +503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e278452063c1fd4dbbaadb0f8645fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WeaponName: Minigan
   ShootSource: {fileID: 2863427163040977105}
   TriggerPulls:
   - {fileID: 7319593816166470086}

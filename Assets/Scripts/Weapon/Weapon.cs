@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour, ITriggerPull
 {
+    public string WeaponName;
     public GameObject ShootSource;
     public TriggerPull[] TriggerPulls;
     public WeaponAimedAttack Aim;
@@ -32,17 +33,10 @@ public class Weapon : MonoBehaviour, ITriggerPull
     private void Update()
     {
         Aim.SetShootPositionAndDirection(ShootSource.transform.position, ShootSource.transform.forward);
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Press();
-        }
-        if (Input.GetButtonUp("Fire1"))
-        {
-            Release();
-        }
-        if (Input.GetButtonUp("Submit"))
-        {
-            Magazine.Reload();
-        }
+    }
+
+    public override string ToString()
+    {
+        return WeaponName;
     }
 }
