@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 375425020327400021}
   - component: {fileID: 1225724090033439656}
   - component: {fileID: 1476357832672382056}
+  - component: {fileID: 3279057098301318403}
   m_Layer: 0
   m_Name: doorway_wide
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 5135182727223812806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1562.5708, y: 155.83789, z: 0.000057196263}
-  m_LocalScale: {x: 0.001, y: 0.001, z: 0.001}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3279057098301318403
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5135182727223812806}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 3.5000002, z: 0.1874161}
+  m_Center: {x: 0.000000059604645, y: 1.7500001, z: 0.00000045076013}
