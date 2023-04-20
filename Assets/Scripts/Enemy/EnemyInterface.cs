@@ -10,8 +10,8 @@ public abstract class EnemyInterface : MonoBehaviour
     [SerializeField] public NavMeshAgent agent;
     [SerializeField] public Transform target = null;
 
-    [SerializeField] public float distance = 10f;
-    [SerializeField] public float distanceForAttake = 10f;
+    [SerializeField] public float distance = 20f;
+    [SerializeField] public float distanceForAttake = 20f;
     [SerializeField] public float distanceForFastAttake = 3f;
 
     [SerializeField] private HealthComponent EnemyHP;
@@ -38,7 +38,8 @@ public abstract class EnemyInterface : MonoBehaviour
         IsRunAway = false;
         EnemyHP = gameObject.GetComponent<HealthComponent>();
         EnemyHP.OnDie.AddListener(EnemyDie);
-        GotoNextPoint();
+        if(gameObject.tag=="MeleeBot")
+            GotoNextPoint();
     }
     private void Awake()
     {
@@ -128,7 +129,7 @@ public abstract class EnemyInterface : MonoBehaviour
             nextSpawn = Time.time + spawnRate;
             if (gameObject.name == "EnemyDistant")
             {
-
+                print("Fire");
                 gameObject.GetComponentInChildren<Animator>().Play("Cube");
                 gameObject.GetComponent<Animator>().Play("testAttakeDistanceBot");
             }

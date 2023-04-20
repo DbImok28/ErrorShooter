@@ -20,6 +20,7 @@ public class EnemyMeleeController : EnemyInterface
         }
         else if(dis <= distanceForFastAttake)
         {
+            RotateToTarget();
             EnemyAttack();
         }
 
