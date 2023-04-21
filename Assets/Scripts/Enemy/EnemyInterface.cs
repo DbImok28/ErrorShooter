@@ -26,7 +26,9 @@ public abstract class EnemyInterface : MonoBehaviour
     private float spawnRate = 2f;
     float nextSpawn = 1.5f;
 
-    public bool IsRunAway;  
+    public bool IsRunAway;
+
+    public Weapon weapon;
 
     private void Start()
     {
@@ -38,7 +40,9 @@ public abstract class EnemyInterface : MonoBehaviour
         IsRunAway = false;
         EnemyHP = gameObject.GetComponent<HealthComponent>();
         EnemyHP.OnDie.AddListener(EnemyDie);
-        if(gameObject.tag=="MeleeBot")
+
+        weapon = gameObject.GetComponentInChildren<Weapon>();
+        if (gameObject.tag=="MeleeBot")
             GotoNextPoint();
     }
     private void Awake()
@@ -127,24 +131,14 @@ public abstract class EnemyInterface : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            if (gameObject.name == "EnemyDistant")
-            {
-                print("Fire");
-                gameObject.GetComponentInChildren<Animator>().Play("Cube");
-                gameObject.GetComponent<Animator>().Play("testAttakeDistanceBot");
-            }
-            else
-                gameObject.GetComponentInChildren<Animator>().Play("testAttakeMeleeBot");
+            gameObject.GetComponentInChildren<Animator>().Play("testAttakeMeleeBot");
+            weapon.Press();
+            weapon.Release();
         }
-        
     }
 
     public void EnemyDie()
     {
         Destroy(gameObject);
-    }
-
-    public void EnemyTakeDamage()
-    {
     }
 }

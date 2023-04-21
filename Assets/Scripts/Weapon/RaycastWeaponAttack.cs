@@ -9,11 +9,12 @@ namespace Assets.Scripts.Weapon
 
         [SerializeField] private GameObject DebugShootSource;
         private GameObject DebugShootPointSphere;
+        [SerializeField] private bool ShowDebugSphere = true;
 
         private void Start()
         {
             // Debug code
-            if (DebugShootSource != null)
+            if (ShowDebugSphere && DebugShootSource != null)
             {
                 DebugShootPointSphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 Destroy(DebugShootPointSphere.GetComponent<Collider>());
@@ -35,7 +36,7 @@ namespace Assets.Scripts.Weapon
 
         public override bool Attack(Vector3 position, Vector3 direction)
         {
-            print(position);
+            //print(position);
             if (Physics.Raycast(position, direction, out RaycastHit hit, MaxShootDistance))
             {
                 var health = hit.collider.gameObject.GetComponent<HealthComponent>();
@@ -45,13 +46,15 @@ namespace Assets.Scripts.Weapon
                 }
 
                 // Debug code
-                GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                Destroy(sphere.GetComponent<Collider>());
-                sphere.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-                sphere.transform.localPosition = hit.point;
-                sphere.transform.localRotation = Quaternion.identity;
-                Destroy(sphere, 5);
-
+                if (ShowDebugSphere)
+                {
+                    GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                    Destroy(sphere.GetComponent<Collider>());
+                    sphere.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                    sphere.transform.localPosition = hit.point;
+                    sphere.transform.localRotation = Quaternion.identity;
+                    Destroy(sphere, 5);
+                }
                 return true;
             }
             return false;

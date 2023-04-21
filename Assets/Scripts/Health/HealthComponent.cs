@@ -15,7 +15,7 @@ public class HealthComponent : MonoBehaviour
     public void TakeDamage(float damage)
     {
         if (IsDead) return;
-
+        
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0.0f, MaxHealth);
         OnTakeDamage.Invoke(damage);
         if (CurrentHealth <= 0.0f)
