@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public HealthComponent playerHealthComponent;
+    public HealthComponent PlayerHealthComponent;
     void Start()
     {
-        playerHealthComponent.OnTakeDamage.AddListener(DisplayRedScreen);
+        //playerHealthComponent.OnTakeDamage.AddListener(DisplayRedScreen);
     }
 
     private void DisplayRedScreen(float damage)
