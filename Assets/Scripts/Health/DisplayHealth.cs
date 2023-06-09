@@ -8,7 +8,7 @@ public class DisplayHealth : MonoBehaviour
     [SerializeField]
     public TMP_Text HealthText;
 
-    private void Start()
+    public void SetDefault()
     {
         if (Health == null)
         {
@@ -20,10 +20,15 @@ public class DisplayHealth : MonoBehaviour
         }
         if (Health != null && HealthText != null)
         {
-            Health.OnTakeDamage.AddListener(UpdateHealth);
-            Health.OnDie.AddListener(OnDie);
+            //Health.OnTakeDamage.AddListener(UpdateHealth);
+            //Health.OnDie.AddListener(UpdateDeath);
             UpdateHealth(0);
         }
+    }
+
+    private void Start()
+    {
+        SetDefault();
     }
 
     public void UpdateHealth(float damage)
@@ -31,7 +36,7 @@ public class DisplayHealth : MonoBehaviour
         HealthText.text = $"Damage: {damage} Health: {Health.CurrentHealth}";
     }
 
-    private void OnDie()
+    public void UpdateDeath()
     {
         HealthText.text = $"Is died";
     }

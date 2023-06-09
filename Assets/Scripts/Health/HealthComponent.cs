@@ -11,6 +11,7 @@ public class HealthComponent : MonoBehaviour
     [Header("Events")]
     public UnityEvent<float> OnTakeDamage;
     public UnityEvent OnDie;
+    public UnityEvent OnRespawn;
 
     public void TakeDamage(float damage)
     {
@@ -33,6 +34,19 @@ public class HealthComponent : MonoBehaviour
     public void Die()
     {
         IsDead = true;
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
         OnDie.Invoke();
+    }
+
+    public void Respawn()
+    {
+        IsDead = false;
+        gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        OnRespawn.Invoke();
+    }
+
+    public void SetDefault()
+    {
+        CurrentHealth = 10.0f;
     }
 }
