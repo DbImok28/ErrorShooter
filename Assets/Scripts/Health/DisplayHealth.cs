@@ -1,43 +1,37 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DisplayHealth : MonoBehaviour
 {
     [SerializeField]
-    public HealthComponent Health;
+    public GameObject Player;
+    private HealthComponent health;
     [SerializeField]
-    public TMP_Text HealthText;
+    public Text HealthText;
 
     public void SetDefault()
     {
-        if (Health == null)
+        
+        if (health != null && HealthText != null)
         {
-            Health = GetComponent<HealthComponent>();
-        }
-        if (HealthText == null)
-        {
-            HealthText = gameObject.GetComponentInChildren<TMP_Text>();
-        }
-        if (Health != null && HealthText != null)
-        {
-            //Health.OnTakeDamage.AddListener(UpdateHealth);
-            //Health.OnDie.AddListener(UpdateDeath);
             UpdateHealth(0);
         }
     }
 
     private void Start()
     {
+        health = Player.GetComponent<HealthComponent>();
         SetDefault();
     }
 
     public void UpdateHealth(float damage)
     {
-        HealthText.text = $"Damage: {damage} Health: {Health.CurrentHealth}";
+        HealthText.text = $"{health.CurrentHealth}";
     }
 
     public void UpdateDeath()
     {
-        HealthText.text = $"Is died";
+        HealthText.text = $"dead";
     }
 }

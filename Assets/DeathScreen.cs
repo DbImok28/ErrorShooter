@@ -20,13 +20,15 @@ public class DeathScreen : MonoBehaviour
     {
         canvas.enabled = true;
         EnableButtons();
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void Hide()
     {
         canvas.enabled = false;
         DisableButtons();
-        
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
    private void EnableButtons()

@@ -118,7 +118,7 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanOpenDoor
     void Start()
     {
         playerKeysNames = new List<string>();
-        playerKeysUI = GameObject.Find("PlayerKeys").GetComponent<Text>();
+        //playerKeysUI = GameObject.Find("PlayerKeys").GetComponent<Text>();
     }
 
     void Update()
