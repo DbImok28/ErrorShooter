@@ -6,5 +6,7 @@ public class PlayerInventory : MonoBehaviour
 {
     [SerializeField] public List<GameObject> Weapons = new List<GameObject>();
 
+    [SerializeField] public List<GameObject> Keys = new List<GameObject>();
+
     // ...
 }

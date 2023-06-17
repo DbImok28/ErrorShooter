@@ -14,6 +14,8 @@ public class PlayerController : BaseFirstPersonController
     public int ActiveWeaponIndex = -1;
     private bool WeaponInHand = false;
 
+    private PlayerEnvironmentInteraction environmentInteraction;
+
     public void StartSwapWeapon()
     {
         WeaponInHand = false;
@@ -124,6 +126,20 @@ public class PlayerController : BaseFirstPersonController
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            environmentInteraction.DisplayOrHideNote();
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            environmentInteraction.PickUpKey();
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+            environmentInteraction.AttachCardreaderKey();
+        }
+        environmentInteraction.Interact();
+
     }
 
     public void Start()
@@ -133,5 +149,7 @@ public class PlayerController : BaseFirstPersonController
             Inventory = GetComponent<PlayerInventory>();
         }
         SwapWeapon(0);
+
+        environmentInteraction = GetComponent<PlayerEnvironmentInteraction>();
     }
 }

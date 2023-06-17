@@ -123,19 +123,7 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanOpenDoor
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            DisplayOrHideNote();
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            PickUpKey();
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            AttachCardreaderKey();
-        }
-        Interact();
+        
     }
 
 }

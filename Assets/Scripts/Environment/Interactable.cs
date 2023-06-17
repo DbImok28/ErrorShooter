@@ -20,12 +20,12 @@ public class Interactable : MonoBehaviour
 
     public void DisplayText()
     {
-        tooltipUI.text = Tooltip;
+        //tooltipUI.text = Tooltip;
     }
 
     public void HideText()
     {
-        tooltipUI.text = "";
+        //tooltipUI.text = "";
     }
 
     public void Highlight()
@@ -46,7 +46,7 @@ public class Interactable : MonoBehaviour
 
     void Start()
     {
-        tooltipUI = GameObject.Find("ItemInfo").GetComponent<Text>();
+        //tooltipUI = GameObject.Find("ItemInfo").GetComponent<Text>();
         transform = GetComponentInChildren<Transform>().GetComponentInChildren<Transform>();
 
     }
