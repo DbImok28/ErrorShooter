@@ -134,9 +134,9 @@ public class PlayerController : BaseFirstPersonController
         {
             environmentInteraction.PickUpKey();
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            environmentInteraction.AttachCardreaderKey();
+            environmentInteraction.AttachKey();
         }
         environmentInteraction.Interact();
 
@@ -150,6 +150,8 @@ public class PlayerController : BaseFirstPersonController
         }
         SwapWeapon(0);
 
-        environmentInteraction = GetComponent<PlayerEnvironmentInteraction>();
+        environmentInteraction= GetComponent<PlayerEnvironmentInteraction>();
+        environmentInteraction.Init(Inventory);
+
     }
 }

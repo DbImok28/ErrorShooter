@@ -14,4 +14,10 @@ public class AutomaticDoor : Door
         return PlayerIsNear();
     }
 
+    public override bool CanBeClosed()
+    {
+        return !PlayerIsNear();
+    }
+
+
 }

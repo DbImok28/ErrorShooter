@@ -7,11 +7,7 @@ using System.Linq;
 
 public class PlayerEnvironmentInteraction : MonoBehaviour, ICanOpenDoor
 {
-    // Start is called before the first frame update
-
-    public UnityEvent InteractableMouseEnter;
-    public UnityEvent InteractableMouseLeave;
-
+    
     public float СanReadNoteRadius;
     public float CanPickUpItemRadius = 2;
     public float CanOpenDoorRadius = 2;
@@ -19,50 +15,106 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanOpenDoor
 
     private Note nearestNote;
 
-    public List<string> playerKeysNames;
+    private GameObject currentInteractable;
 
-    private Text playerKeysUI;
-    public List<GameObject> pickedUpItems { get; set; }
+    private PlayerInventory inventory;
 
-    private Interactable currentInteractable;
-    public string PrintPlayerKeysNames()
+    public void Init(PlayerInventory playerInventory)
     {
-        string keysNames = "Your keys : \n" + System.String.Join(",", playerKeysNames.Select(p => p).ToArray());
-
-        return keysNames;
+        this.inventory = playerInventory;
     }
 
     public void PickUpKey()
     {
+        GameObject key;
+
+        if (KeyIsNear(out key))
+        {
+            inventory.Keys.Add(key);
+
+            //Анимация подбора ключа
+
+            key.gameObject.SetActive(false);
+        }
+    }
+
+    public bool KeyIsNear(out GameObject key)
+    {
+        var colliders = Physics.OverlapSphere(gameObject.transform.position, CanPickUpItemRadius);
+          
+        foreach (var collider in colliders)
+        {
+            if(collider.gameObject.GetComponent<KeyForDoor>())
+            {
+                key = collider.gameObject;
+                return true;
+            }
+        }
+
+        key = null;
+        return false;
+    }
+
+    public void AttachKey()
+    {
+        GameObject keyDoor;
+
+        if(KeyDoorIsNear(out keyDoor))
+        {
+            GameObject matchingKey;
+
+            if (TryMatchKey(keyDoor, out matchingKey))
+            {
+                matchingKey.SetActive(true);
+
+                //Анимация прикладывания ключа
+
+                //Анимация открытия двери
+
+            }
+        }
+    }
+
+    //Работает только тогда, когда обьект со скриптом Cardreader вложен в обьект со скриптом KeyDoor
+    public bool KeyDoorIsNear(out GameObject keyDoor)
+    {
         var colliders = Physics.OverlapSphere(gameObject.transform.position, CanPickUpItemRadius);
         foreach (var collider in colliders)
         {
-            KeyForDoor pickableItem = collider.GetComponentInParent(typeof(KeyForDoor)) as KeyForDoor;
-
-            if (pickableItem != null)
+            if (collider.gameObject.GetComponentInParent<KeyDoor>())
             {
-                playerKeysNames.Add(pickableItem.KeyName);
-                playerKeysUI.text = PrintPlayerKeysNames();
-                Destroy(pickableItem.gameObject);
+                keyDoor = collider.gameObject.transform.parent.gameObject;
+                return true;
             }
         }
+
+        keyDoor = null;
+        return false;
+
     }
 
-    public void AttachCardreaderKey()
+    public bool TryMatchKey(GameObject keyDoor, out GameObject matchingKey)
     {
-        RaycastHit raycastHit;
-        Ray ray = gameObject.GetComponentInChildren<Camera>().ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out raycastHit, 100f))
+        KeyDoor _keyDoor = keyDoor.GetComponent<KeyDoor>();
+        if (_keyDoor)
         {
-            if (raycastHit.transform.TryGetComponent<Cardreader>(out Cardreader cardreader))
+            GameObject _matchingKey;
+
+            if (_keyDoor.PlayerHasMatchingKey(inventory.Keys, out  _matchingKey))
             {
-                cardreader.CompareKeys(playerKeysNames);
+                matchingKey = _matchingKey;
+                return true;
             }
         }
+
+        matchingKey = null;
+        return false;
     }
+
 
     public void DisplayOrHideNote()
     {
+        /*
         var colliders = Physics.OverlapSphere(transform.position, СanReadNoteRadius);
         foreach (var collider in colliders)
         {
@@ -73,57 +125,42 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanOpenDoor
                 break;
             }
         }
+        */
     }
 
     public void Interact()
     {
         RaycastHit hit;
-        Ray ray = gameObject.GetComponentInChildren<Camera>().ScreenPointToRay(Input.mousePosition);
+        //Переделать поиск камеры
+        Ray ray = GameObject.Find("Camera").GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out hit, CanInteractRadius))
         {
             Transform objectHit = hit.transform;
             if (objectHit.gameObject.TryGetComponent(out Interactable interactable))
             {
+                if (currentInteractable == interactable.gameObject)
+                {
+                   return;
+                }
                 if (currentInteractable)
                 {
-                    if (currentInteractable == interactable)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        currentInteractable.Dehighlight();
-                        currentInteractable = null;
-                        currentInteractable = interactable;
-                        currentInteractable.Highlight();
-                    }
+                    currentInteractable.GetComponent<Interactable>().ReleaseInteraction();
                 }
-                else
-                {
-                    currentInteractable = interactable;
-                    currentInteractable.Highlight();
-                }
-
+                
+                currentInteractable = interactable.gameObject;
+                currentInteractable.GetComponent<Interactable>().Interact();
             }
-            else if (currentInteractable)
+            else
             {
-                currentInteractable.Dehighlight();
-                currentInteractable = null;
+                if (currentInteractable)
+                {
+                    currentInteractable.GetComponent<Interactable>().ReleaseInteraction();
+                    currentInteractable = null;
+                }
             }
         }
 
-    }
-
-    void Start()
-    {
-        playerKeysNames = new List<string>();
-        //playerKeysUI = GameObject.Find("PlayerKeys").GetComponent<Text>();
-    }
-
-    void Update()
-    {
-        
     }
 
 }

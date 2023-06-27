@@ -1,47 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UnityEngine.Events;
 
 public class Cardreader : MonoBehaviour
 {
-
-
     public string CardreaderKeyName;
-    public float PlayerNearRadius = 5.0f;
-    private KeyDoor keyDoor;
-    public void CompareKeys(List<string> playerKeysNames)
-    {
-        if (PlayerIsNear())
-        {
-            if (playerKeysNames.Contains(CardreaderKeyName))
-            {
-                keyDoor.playerHasKey = true;
-            }
-        }
-        
-    }
-        void Start()
-    {
-        
-        if (transform.parent.gameObject.TryGetComponent<KeyDoor>(out KeyDoor _keyDoor))
-        {
-            keyDoor = _keyDoor;
-        }
-    }
 
-    public bool PlayerIsNear()
+    public bool PlayerHasMatchingKey(List<GameObject> playerkeys, out GameObject matchingKey)
     {
-
-        var colliders = Physics.OverlapSphere(gameObject.transform.position, PlayerNearRadius);
-        List<GameObject> context = new List<GameObject>();
-        foreach (var collider in colliders)
+       
+        foreach(GameObject playerKey in playerkeys)
         {
-            if (collider.TryGetComponent<ICanOpenDoor>(out ICanOpenDoor canOpenDoor))
+            if (playerKey.TryGetComponent<KeyForDoor>(out KeyForDoor keyForDoor))
             {
+                matchingKey = playerKey;
                 return true;
             }
         }
 
+        matchingKey = null;
         return false;
     }
+    
 }

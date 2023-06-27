@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6900906501389905915}
+  - component: {fileID: 5103191840677271506}
+  - component: {fileID: 763310223821855700}
   m_Layer: 0
   m_Name: Checkpoint
   m_TagString: Untagged
@@ -33,6 +35,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5103191840677271506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900906501389905914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2889eefa9ab1ef45b2af16b75c18d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InteractableMouseEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  InteractableMouseLeave:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &763310223821855700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6900906501389905914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1682641bf42eec54f932ce2ceef5eff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlineColor: {r: 1, g: 0, b: 1, a: 1}
+  OutlineWidth: 10
 --- !u!1 &6900906501698770721
 GameObject:
   m_ObjectHideFlags: 0

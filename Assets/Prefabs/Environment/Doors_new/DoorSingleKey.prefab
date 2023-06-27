@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 4083444345100810551}
   - component: {fileID: 4083444345100810546}
   - component: {fileID: 6037336494306522999}
+  - component: {fileID: 6322145133041086590}
   m_Layer: 0
   m_Name: Cardreader
   m_TagString: Untagged
@@ -222,7 +223,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2889eefa9ab1ef45b2af16b75c18d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tooltip: Cardreader. Press LMB to attach key.
+  InteractableMouseEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  InteractableMouseLeave:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6322145133041086590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4083444345100810549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1682641bf42eec54f932ce2ceef5eff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   OutlineColor: {r: 1, g: 1, b: 0, a: 1}
   OutlineWidth: 10
 --- !u!1 &4083444345492666583
@@ -295,7 +313,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DoorMoveTime: 3
   OpenRadius: 5
-  playerHasKey: 0
+  KeyMatchedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4083444345492666576}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: BeOpened
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &4083444345814703695
 PrefabInstance:
   m_ObjectHideFlags: 0

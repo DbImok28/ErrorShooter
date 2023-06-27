@@ -13,15 +13,11 @@ public abstract class Door : MonoBehaviour
     public float OpenRadius = 5;
 
     protected Vector3 DoorBottom;
-    protected Transform DoorTransform { get { return doorTransform; } set { doorTransform = value; } }
-    private Transform doorTransform;
-    protected Vector3 OpenedPosition { get { return openedPosition; } set { openedPosition = value; } }
-    private Vector3 openedPosition;
-    protected Vector3 ClosedPosition { get { return closedPosition; } set { closedPosition = value; } }
-    private Vector3 closedPosition;
+    
 
     private Animator animator;
 
+    /*
     GameObject FindChildWithTag(GameObject parent, string tag)
     {
         GameObject child = null;
@@ -37,6 +33,7 @@ public abstract class Door : MonoBehaviour
 
         return child;
     }
+    */
     
     protected virtual void Start()
     {
@@ -48,16 +45,22 @@ public abstract class Door : MonoBehaviour
 
     public void BeOpened()
     {
-        animator.SetBool("CanBeOpened", true);
-        isOpen = true;
+        if (CanBeOpened())
+        {
+            animator.SetBool("CanBeOpened", true);
+            isOpen = true;
+        }
+        
     }
 
     public void BeClosed()
     {
-        animator.SetBool("CanBeOpened", false);
-        isOpen = false;
+        if (CanBeClosed())
+        {
+            animator.SetBool("CanBeOpened", false);
+            isOpen = false;
+        }
     }
-
 
     public bool PlayerIsNear()
     {
@@ -81,6 +84,7 @@ public abstract class Door : MonoBehaviour
     }
 
     public abstract bool CanBeOpened();
+    public abstract bool CanBeClosed();
     public virtual void CheckIfOpen()
     {
         if (CanBeOpened())
