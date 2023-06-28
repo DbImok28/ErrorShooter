@@ -6,6 +6,6 @@ public interface ISaveable
 {
     public void SaveData(ref GameData gameData);
 
-    public GameData LoadData(GameData gameData);
+    public void LoadData(GameData gameData);
     
 }

@@ -45,6 +45,8 @@ public class SaveLoadManager : MonoBehaviour
         }
 
         jsonDataHandler.SaveData(gameData);
+
+        Debug.Log("save game");
     }
 
     public void LoadGame()
@@ -62,6 +64,9 @@ public class SaveLoadManager : MonoBehaviour
         {
             saveable.LoadData(gameData);
         }
+
+        Debug.Log("load game");
+        Debug.Log(gameData.playerHealth);
 
     }
 

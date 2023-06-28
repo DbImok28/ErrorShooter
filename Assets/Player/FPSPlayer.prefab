@@ -149,7 +149,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 87
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 3653754505939577353}
   - component: {fileID: 1469307813216821209}
   - component: {fileID: 8321717528222961627}
+  - component: {fileID: 8435454242434608002}
   m_Layer: 0
   m_Name: FPSPlayer
   m_TagString: Untagged
@@ -359,6 +360,7 @@ MonoBehaviour:
   Weapons:
   - {fileID: 3350520855532217268, guid: a3971036362460e42b32f2312423bb87, type: 3}
   - {fileID: 369911419506943539, guid: 3ac90ecb7fcc00149b50d521589fbce9, type: 3}
+  Keys: []
 --- !u!114 &1469307813216821209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +415,31 @@ MonoBehaviour:
   "\u0421anReadNoteRadius": 0
   CanPickUpItemRadius: 2
   CanOpenDoorRadius: 2
-  playerKeysNames: []
+  CanInteractRadius: 4
+  currentInteractable: {fileID: 0}
+--- !u!114 &8435454242434608002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7110427270280320919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38afb083a49b0bb40909a5d23529bfde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 10
+  MaxHealth: 10
+  OnTakeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRespawn:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &9187891123649646341
 GameObject:
   m_ObjectHideFlags: 0

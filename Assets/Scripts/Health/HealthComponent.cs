@@ -12,6 +12,7 @@ public class HealthComponent : MonoBehaviour, ISaveable
     public UnityEvent<HealthComponent,float> OnTakeDamage;
     public UnityEvent OnDie;
     public UnityEvent OnRespawn;
+    public UnityEvent<HealthComponent> OnGameStart;
 
     public void TakeDamage(float damage)
     {
@@ -42,12 +43,20 @@ public class HealthComponent : MonoBehaviour, ISaveable
     {
         IsDead = false;
         gameObject.GetComponent<Rigidbody>().isKinematic = false;
+
+        SetDefault();
+
         OnRespawn.Invoke();
     }
 
     public void SetDefault()
     {
         CurrentHealth = 10.0f;
+    }
+
+    public void Start()
+    {
+        OnGameStart?.Invoke(this);
     }
 
     public void SaveData(ref GameData gameData)
@@ -59,4 +68,5 @@ public class HealthComponent : MonoBehaviour, ISaveable
     {
         CurrentHealth=gameData.playerHealth;
     }
+
 }

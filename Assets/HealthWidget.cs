@@ -8,6 +8,12 @@ public class HealthWidget : MonoBehaviour
 
     private HealthComponent playerHealth;
 
+    public void InitPlayerHealth(HealthComponent healthInfo)
+    {
+        Debug.Log("handle init player health");
+        ProgressBar.SetText(healthInfo.CurrentHealth);
+    }
+
     public void HandlePlayerDamaged(HealthComponent healthInfo, float damage)
     {
         Debug.Log("handle player damaged from health widget");
@@ -18,6 +24,7 @@ public class HealthWidget : MonoBehaviour
     {
         playerHealth = FindPlayerDamagable();
         playerHealth.OnTakeDamage.AddListener(HandlePlayerDamaged);
+        playerHealth.OnGameStart.AddListener(InitPlayerHealth);
     }
 
     private void OnDisable()

@@ -2,7 +2,7 @@ using ECM.Controllers;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerController : BaseFirstPersonController
+public class PlayerController : BaseFirstPersonController, ISaveable
 {
     [Header("Inventory")]
     [SerializeField] public PlayerInventory Inventory;
@@ -89,7 +89,10 @@ public class PlayerController : BaseFirstPersonController
         // By default, will restore character's velocity on resume (eg: restoreVelocityOnResume = true)
 
         if (Input.GetKeyDown(KeyCode.P))
+        {
             pause = !pause;
+        }
+            
 
         // Player input
 
@@ -153,5 +156,17 @@ public class PlayerController : BaseFirstPersonController
         environmentInteraction= GetComponent<PlayerEnvironmentInteraction>();
         environmentInteraction.Init(Inventory);
 
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.playerX=transform.position.x;
+        gameData.playerY = transform.position.y;
+        gameData.playerZ = transform.position.z;
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        transform.position=new Vector3(gameData.playerX, gameData.playerY, gameData.playerZ);
     }
 }

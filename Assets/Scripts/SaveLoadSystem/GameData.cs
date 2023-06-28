@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameData : MonoBehaviour
+[System.Serializable]
+public class GameData 
 {
     public float playerHealth;
 
-    
+    public float playerX;
+    public float playerY;
+    public float playerZ;
+
+
 }
