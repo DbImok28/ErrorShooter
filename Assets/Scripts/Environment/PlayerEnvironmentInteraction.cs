@@ -15,7 +15,7 @@ public class PlayerEnvironmentInteraction : MonoBehaviour, ICanOpenDoor
 
     private Note nearestNote;
 
-    private GameObject currentInteractable;
+    public GameObject currentInteractable;
 
     private PlayerInventory inventory;
 

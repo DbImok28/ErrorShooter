@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HealthComponent : MonoBehaviour
+public class HealthComponent : MonoBehaviour, ISaveable
 {
     [Header("Parameters")]
     public float CurrentHealth = 10.0f;
@@ -9,7 +9,7 @@ public class HealthComponent : MonoBehaviour
     public bool IsDead { get; private set; } = false;
 
     [Header("Events")]
-    public UnityEvent<float> OnTakeDamage;
+    public UnityEvent<HealthComponent,float> OnTakeDamage;
     public UnityEvent OnDie;
     public UnityEvent OnRespawn;
 
@@ -18,7 +18,7 @@ public class HealthComponent : MonoBehaviour
         if (IsDead) return;
         
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0.0f, MaxHealth);
-        OnTakeDamage.Invoke(damage);
+        OnTakeDamage.Invoke(this,damage);
         if (CurrentHealth <= 0.0f)
         {
             Die();
@@ -48,5 +48,15 @@ public class HealthComponent : MonoBehaviour
     public void SetDefault()
     {
         CurrentHealth = 10.0f;
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.playerHealth=CurrentHealth;
+    }
+
+    public void LoadData(GameData gameData)
+    {
+        CurrentHealth=gameData.playerHealth;
     }
 }

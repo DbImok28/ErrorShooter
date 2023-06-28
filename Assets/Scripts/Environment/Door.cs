@@ -17,23 +17,6 @@ public abstract class Door : MonoBehaviour
 
     private Animator animator;
 
-    /*
-    GameObject FindChildWithTag(GameObject parent, string tag)
-    {
-        GameObject child = null;
-
-        foreach (Transform transform in parent.transform)
-        {
-            if (transform.CompareTag(tag))
-            {
-                child = transform.gameObject;
-                break;
-            }
-        }
-
-        return child;
-    }
-    */
     
     protected virtual void Start()
     {

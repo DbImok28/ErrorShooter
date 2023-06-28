@@ -17,7 +17,9 @@ public class DamageSrceen : MonoBehaviour
 
     private void Start()
     {
-        HealthComponenthealth.OnTakeDamage.AddListener(ShowDamageScreen);
+        //оепедекюрэ
+
+        //HealthComponenthealth.OnTakeDamage.AddListener(ShowDamageScreen);
     }
     public void ShowDamageScreen(float x)
     {

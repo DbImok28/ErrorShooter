@@ -23,7 +23,7 @@ public class InteractableColorBorder : MonoBehaviour
         interactable.InteractableMouseLeave.RemoveListener(Dehighlight);
     }
 
-    public void Highlight()
+    public void Highlight(Interactable interactable)
     {
         transform.gameObject.AddComponent<Outline>();
         transform.gameObject.GetComponent<Outline>().OutlineMode = Outline.Mode.OutlineAll;
@@ -31,7 +31,7 @@ public class InteractableColorBorder : MonoBehaviour
         transform.gameObject.GetComponent<Outline>().OutlineWidth = OutlineWidth != null ? OutlineWidth : 10;
     }
 
-    public void Dehighlight()
+    public void Dehighlight(Interactable interactable)
     {
         Destroy(transform.gameObject.GetComponent<Outline>());
     }

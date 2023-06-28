@@ -81,6 +81,7 @@ MonoBehaviour:
   InteractableMouseLeave:
     m_PersistentCalls:
       m_Calls: []
+  ItemInfo: Key for door
 --- !u!114 &41085763886114059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +212,7 @@ MonoBehaviour:
   InteractableMouseLeave:
     m_PersistentCalls:
       m_Calls: []
+  ItemInfo: 
 --- !u!1 &5584049496909019505
 GameObject:
   m_ObjectHideFlags: 0
