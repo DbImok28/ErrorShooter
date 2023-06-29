@@ -4,10 +4,9 @@ public class EnemyDistanceController : EnemyInterface
 {
     private void Update()
     {
-        float dis = Vector3.Distance(target.transform.position, transform.position);
-        
         if (target == null)
             return;
+        float dis = Vector3.Distance(target.transform.position, transform.position);
         if(dis >= distanceForAttake && !IsRunAway && dis<distance)
         {
             RotateToTarget();
@@ -32,5 +31,5 @@ public class EnemyDistanceController : EnemyInterface
 
             Vector3 forward = transform.TransformDirection(Vector3.forward) * 1000;
             Debug.DrawRay(transform.position, forward, Color.green);
-    }
+    } 
 }

@@ -1,9 +1,5 @@
-using System.Drawing;
-using System.Security.Cryptography;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using Color = UnityEngine.Color;
 
 public abstract class EnemyInterface : MonoBehaviour
 {
@@ -81,6 +77,7 @@ public abstract class EnemyInterface : MonoBehaviour
             return false;
         return true;
     }
+
     public void GotoNextPoint()
     {
         if (IsPointsExist()) {
@@ -116,7 +113,6 @@ public abstract class EnemyInterface : MonoBehaviour
     {
         return (Vector3.Distance(transform.position, points[i].position));
     }
-
 
     public void ResetIsRunAway()
     {
