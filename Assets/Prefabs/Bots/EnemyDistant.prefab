@@ -145,12 +145,12 @@ MonoBehaviour:
   distance: 15
   distanceForAttake: 10
   distanceForFastAttake: 3
-  EnemyHP: {fileID: 0}
+  EnemyHP: {fileID: 953570955303206397}
   points: []
   destPoint: 0
   rotationSpeed: 5
   IsRunAway: 0
-  weapon: {fileID: 0}
+  weapon: {fileID: 5709938300755623238}
 --- !u!114 &953570955303206397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,6 +171,12 @@ MonoBehaviour:
   OnDie:
     m_PersistentCalls:
       m_Calls: []
+  OnRespawn:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameStart:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &739075111913751120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4c7f48e99208a44af62404f1082223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 0}
+  Player: {fileID: 776277487808257583}
   HealthText: {fileID: 0}
 --- !u!95 &3259416848639752055
 Animator:
@@ -251,7 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 1
   MaxShootDistance: 4000
-  DebugShootSource: {fileID: 0}
+  DebugShootSource: {fileID: 5631881349871564368}
   ShowDebugSphere: 0
 --- !u!1 &4066010921001504993
 GameObject:
@@ -797,7 +803,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponName: 
-  ShootSource: {fileID: 0}
-  TriggerPulls: []
-  Aim: {fileID: 0}
-  Magazine: {fileID: 0}
+  ShootSource: {fileID: 776277487808257583}
+  TriggerPulls:
+  - {fileID: 2887340552433174868}
+  Aim: {fileID: 6833604647061313129}
+  Magazine: {fileID: 607256028659136789}

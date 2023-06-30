@@ -9,7 +9,7 @@ public class HealthComponent : MonoBehaviour, ISaveable
     public bool IsDead { get; private set; } = false;
 
     [Header("Events")]
-    public UnityEvent<HealthComponent,float> OnTakeDamage;
+    public UnityEvent<HealthComponent, float> OnTakeDamage;
     public UnityEvent OnDie;
     public UnityEvent OnRespawn;
     public UnityEvent<HealthComponent> OnGameStart;
@@ -17,9 +17,9 @@ public class HealthComponent : MonoBehaviour, ISaveable
     public void TakeDamage(float damage)
     {
         if (IsDead) return;
-        
+
         CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0.0f, MaxHealth);
-        OnTakeDamage.Invoke(this,damage);
+        OnTakeDamage.Invoke(this, damage);
         if (CurrentHealth <= 0.0f)
         {
             Die();
@@ -35,7 +35,10 @@ public class HealthComponent : MonoBehaviour, ISaveable
     public void Die()
     {
         IsDead = true;
-        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        // TODO: Remove
+        var comp = gameObject.GetComponent<Rigidbody>();
+        if (comp != null) comp.isKinematic = true;
+
         OnDie.Invoke();
     }
 
@@ -61,12 +64,12 @@ public class HealthComponent : MonoBehaviour, ISaveable
 
     public void SaveData(ref GameData gameData)
     {
-        gameData.playerHealth=CurrentHealth;
+        gameData.playerHealth = CurrentHealth;
     }
 
     public void LoadData(GameData gameData)
     {
-        CurrentHealth=gameData.playerHealth;
+        CurrentHealth = gameData.playerHealth;
     }
 
 }

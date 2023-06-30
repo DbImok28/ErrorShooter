@@ -122,12 +122,12 @@ MonoBehaviour:
   distance: 10
   distanceForAttake: 10
   distanceForFastAttake: 5
-  EnemyHP: {fileID: 0}
+  EnemyHP: {fileID: -5959924552358124020}
   points: []
   destPoint: 0
   rotationSpeed: 0.2
   IsRunAway: 0
-  weapon: {fileID: 0}
+  weapon: {fileID: 2571872814960673073}
 --- !u!195 &229353154969662296
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4c7f48e99208a44af62404f1082223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: {fileID: 0}
+  Player: {fileID: 229353154969662369}
   HealthText: {fileID: 0}
 --- !u!114 &-5959924552358124020
 MonoBehaviour:
@@ -182,6 +182,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnDie:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRespawn:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameStart:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &883825947403983789
