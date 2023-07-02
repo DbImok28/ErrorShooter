@@ -3,7 +3,72 @@ guid: 1d920d08e21bb5448829ed9bd175b51c
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artboard 65 copy 5-v2
+    second: {fileID: 2100000, guid: 5278c3685b697ac44a1b6b23b46cb130, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artboard 71-v2
+    second: {fileID: 2100000, guid: 38202d0ef1a2a3a4b87574cddacea41e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artboard 75 copy 4-v2
+    second: {fileID: 2100000, guid: 7ac9bf8cd349c5140ae1a744b753a389, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Artboard 93-v2
+    second: {fileID: 2100000, guid: 0bf0bf70a6af26b4287f94627cbcd92e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cables negros
+    second: {fileID: 2100000, guid: 7e696303fa5062043b2a5b7035828a3f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: emission
+    second: {fileID: 2100000, guid: 86f0787353de187448c7424f7be287b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: 4aa7529147dd04e41bc2d06b223f2bc1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gris oscuro resortes
+    second: {fileID: 2100000, guid: 98b0bc179efda21448be259e8cfe754d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal amarillo
+    second: {fileID: 2100000, guid: ed0bec28f2cd7d14cafc27e089e4eba1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal gris claro
+    second: {fileID: 2100000, guid: 5e85fe1f719427a43be928671d366d8f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal gris oscuro
+    second: {fileID: 2100000, guid: 37b0e326bd5d58b49b6b1517779b7a62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal gris oscuro.estructura base
+    second: {fileID: 2100000, guid: 9385d470496ec9544a73a0974dadea43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: negro floor
+    second: {fileID: 2100000, guid: 652796d71fe00da47bb038c02204e7ce, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +100,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.12
+    globalScale: 0.06
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -88,7 +153,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.0011999999
+    globalScale: 0.00059999997
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

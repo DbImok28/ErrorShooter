@@ -3,7 +3,67 @@ guid: 31b41c67b07804e49a9b014c1216cf69
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ana renk
+    second: {fileID: 2100000, guid: b2c9618f9d4ec2245b2471afa7c5245a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "F\xFCzekullan\u0131lan"
+    second: {fileID: 2100000, guid: 1781389357d63d04f86d0bc6c4c9619e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: be5f9e03abce4cb43a8136138b422da1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: 1a19d38ad226c62498a552c6ff34dcba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.005
+    second: {fileID: 2100000, guid: 48ea324093326e64eab601d461c5f89e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beyaz metal
+    second: {fileID: 2100000, guid: 840d0f48459deb545bee0e884514b248, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "bordo kapal\u0131 material"
+    second: {fileID: 2100000, guid: 414e49624adc26f47ac3d6aaf2bd717c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "bordo kapal\u0131 material.001"
+    second: {fileID: 2100000, guid: 30990355ff63198498badafc9757f949, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "f\xFCze"
+    second: {fileID: 2100000, guid: 50d9f291a1de00049a8d2f8e14a91f63, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gri Material
+    second: {fileID: 2100000, guid: 205079fda70019740971cda1eba71b79, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kahve metalik
+    second: {fileID: 2100000, guid: 7374d7bdb548fd844ae34aa2e73a88b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "\u041C\u0430\u0442\u0435\u0440\u0438\u0430\u043B"
+    second: {fileID: 2100000, guid: 266b99af21a2f9049ba7dde4aade98b0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +95,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.55
+    globalScale: 0.4
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -88,7 +148,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.0055
+    globalScale: 0.4
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

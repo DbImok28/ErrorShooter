@@ -1,20 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class KeyDoor : Door
 {
-
-    private bool playerHasMatchingKey=false;
-
     private Cardreader cardreader;
-
     public UnityEvent KeyMatchedEvent;
+    private bool playerHasMatchingKey = false;
+
     protected override void Start()
     {
         base.Start();
-        cardreader = gameObject.GetComponentsInChildren<Cardreader>()[0];
+        cardreader = gameObject.GetComponentInChildren<Cardreader>();
     }
 
     public override bool CanBeOpened()
