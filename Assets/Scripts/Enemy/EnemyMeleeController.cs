@@ -3,6 +3,14 @@ using UnityEngine.Rendering;
 
 public class EnemyMeleeController : EnemyInterface
 {
+    private void Start()
+    {
+        if (target == null)
+        {
+            target = FindObjectOfType<PlayerController>().gameObject.transform;
+        }
+    }
+
     private void Update()
     {
         if (target == null)

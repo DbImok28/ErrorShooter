@@ -2467,6 +2467,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 229353154969662303, guid: 64c05ba3823636d4ebd971bea1842fc8,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 229353154969662369, guid: 64c05ba3823636d4ebd971bea1842fc8,
         type: 3}
       propertyPath: m_Name
@@ -6296,7 +6301,7 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
@@ -21443,10 +21448,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 776277487808257580, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 776277487808257582, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 776277487808257583, guid: 72430aca78328254684249ecda354e45,
         type: 3}
       propertyPath: m_Name
       value: EnemyDistant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1528810958673309033, guid: 72430aca78328254684249ecda354e45,
+        type: 3}
+      propertyPath: ShowDebugSphere
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72430aca78328254684249ecda354e45, type: 3}
